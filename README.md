@@ -43,49 +43,13 @@ A classe PagamentoContext recebe dinamicamente a estratégia desejada e executa 
 
 Isso permite adicionar novos métodos de pagamento sem mudar o código existente.
 
-🎯 Como Executar
+▶️ Como executar
+# Compilar
+javac src/**/*.java -d out
 
-Compile todas as classes:
+# Executar
+java -cp out context.Main
 
-javac src/calc/fast/strategy/*.java
-
-
-Crie uma classe Main.java (caso não tenha) dentro de src/calc/fast/strategy/ para rodar os testes. Exemplo:
-
-package calc.fast.strategy;
-
-public class Main {
-    public static void main(String[] args) {
-        // Exemplo com Cartão
-        PagamentoContext context = new PagamentoContext(new PagamentoCartao());
-        context.pagar(100.0);
-
-        // Exemplo com Pix
-        context = new PagamentoContext(new PagamentoPix());
-        context.pagar(50.0);
-
-        // Exemplo com Paypal
-        context = new PagamentoContext(new PagamentoPaypal());
-        context.pagar(200.0);
-    }
-}
-
-
-Compile o Main:
-
-javac src/calc/fast/strategy/Main.java
-
-
-Execute o programa:
-
-java -cp src calc.fast.strategy.Main
-
-
-Saída esperada:
-
-Pagamento de R$100.0 realizado com CARTÃO.
-Pagamento de R$50.0 realizado com PIX.
-Pagamento de R$200.0 realizado com PAYPAL.
 ✅ Exemplo de Saída
 Processando pagamento de R$ 100,00 com Cartão...
 Processando pagamento de R$ 250,00 com PayPal...
