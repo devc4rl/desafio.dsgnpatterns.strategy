@@ -1,60 +1,27 @@
 💳 Pagamento com Padrão Strategy
 Este projeto demonstra a aplicação do Padrão de Projeto Strategy em um sistema de pagamento. Ele permite que o método de pagamento (Cartão, Pix, PayPal) seja facilmente trocado, sem alterar o código principal.
 
-📖 O Padrão de Projeto Strategy
-O Padrão Strategy permite definir uma família de algoritmos, encapsular cada um deles e torná-los intercambiáveis. Ele permite que o algoritmo (o "método de pagamento") varie independentemente do cliente que o utiliza.
+📁 Como Funciona
+O projeto usa três classes para implementar o padrão:
 
-Por que usamos este padrão aqui?
+PagamentoStrategy: A interface (o contrato).
 
-Flexibilidade: É fácil adicionar novos métodos de pagamento (como Bitcoin, Voucher, etc.) sem modificar o código existente.
+PagamentoCartao, PagamentoPaypal, PagamentoPix: As classes que implementam o contrato, cada uma com sua lógica de pagamento.
 
-Manutenibilidade: Cada lógica de pagamento é isolada em sua própria classe, facilitando a manutenção e a correção de bugs.
+PagamentoContext: A classe que utiliza a estratégia escolhida para processar o pagamento.
 
-Código Limpo: O cliente (a classe PagamentoContext) não precisa saber como cada pagamento é processado, apenas que ele pode ser "executado".
+🚀 Como Usar
+Para testar, você pode criar uma classe Main e alternar as estratégias.
 
-📁 Estrutura do Projeto
-O projeto é organizado em um pacote principal, com cada classe desempenhando um papel fundamental no padrão:
-
-src
-└── calc.fast.strategy
-    ├── PagamentoStrategy.java      # A Interface (o contrato)
-    ├── PagamentoCartao.java        # A Estratégia concreta 1
-    ├── PagamentoPaypal.java        # A Estratégia concreta 2
-    ├── PagamentoPix.java           # A Estratégia concreta 3
-    └── PagamentoContext.java       # O Contexto (a classe que usa a estratégia)
-
-✨ Como Funciona
-A lógica é simples e elegante:
-
-PagamentoStrategy: É a interface que define o método processarPagamento(). É o "contrato" que todas as estratégias devem seguir.
-
-PagamentoCartao, PagamentoPaypal, PagamentoPix: São as estratégias concretas que implementam a interface PagamentoStrategy, cada uma com sua própria lógica de processamento de pagamento.
-
-PagamentoContext: É a classe que mantém uma referência para a PagamentoStrategy e a utiliza. O cliente da classe PagamentoContext pode simplesmente definir a estratégia desejada e executar o pagamento, sem se preocupar com os detalhes internos.
-
-💻 Como Rodar
-Basta compilar e executar a sua classe principal (Main.java ou equivalente) para ver a demonstração. Você pode alternar entre as estratégias de pagamento para testar cada uma.
-
-Exemplo de uso:
-
-// Criando o contexto de pagamento
+// Exemplo de como usar a classe de Contexto
 PagamentoContext contexto = new PagamentoContext();
 
-// Definindo a estratégia para Pagamento com Cartão
+// Usa a estratégia de Pagamento via Cartão
 contexto.setPagamentoStrategy(new PagamentoCartao());
-contexto.executarPagamento(150.00);
+contexto.executarPagamento(100.00);
 
-System.out.println("--------------------");
-
-// Mudando a estratégia para Pagamento via Pix em tempo de execução
+// Troca a estratégia para Pagamento via Pix
 contexto.setPagamentoStrategy(new PagamentoPix());
 contexto.executarPagamento(50.00);
 
-🛠 Tecnologias Utilizadas
-Java
-
-🤝 Contribuições
-Sinta-se à vontade para sugerir melhorias, como a adição de novas estratégias de pagamento!
-
-Autor
-[Seu Nome ou Usuário do GitHub]
+Tecnologia: Java****
